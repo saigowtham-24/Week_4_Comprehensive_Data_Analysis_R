@@ -1,201 +1,344 @@
 # Week 4: Comprehensive Data Analysis Reporting and Presentation
 
-## Project Overview
+**Project:** Titanic Passenger Data Analysis
+**Programming Language:** R
+**Tools:** RStudio, ggplot2, dplyr, tidyr, caret, randomForest, pROC
+**Repository:** `Week_4_Comprehensive_Data_Analysis_R`
 
-This repository brings together the four-week Titanic data analysis project: data cleaning, exploratory visualization, statistical analysis, predictive modeling, and final communication of results. The goal is to demonstrate a structured and reproducible workflow in R and present the findings in a way that is understandable to both technical and non-technical readers.
+## 1. Project Overview
 
-The dataset is the Titanic passenger training dataset. The main outcome is `Survived` (0 = did not survive, 1 = survived). Relevant predictors include passenger class, sex, age, family counts, fare, and embarkation port.
+This project presents an end-to-end analysis of the Titanic passenger dataset using R. It integrates data cleaning, exploratory data analysis, visualization, statistical hypothesis testing, predictive modeling, and comprehensive reporting.
 
-> **Evidence and reproducibility:** The report includes descriptive findings carried forward from the previous visualization report and explains the intended statistical and modeling workflow. Final p-values and model metrics must be taken from an actual execution of the R workflow. Do not treat unexecuted code, illustrative assets, or metrics from another programming environment as R execution results.
+The project examines passenger characteristics associated with survival and develops classification models to predict survival outcomes. The findings are communicated through statistical summaries, visualizations, model evaluation metrics, and a final Word report.
 
-## Project Objectives
+## 2. Project Objectives
 
-- Inspect the source data and assess data quality.
-- Summarize missingness and document imputation decisions.
-- Screen potential outliers without automatically deleting plausible observations.
-- Use descriptive statistics and visualizations to explore passenger attributes and survival.
-- Test selected hypotheses using suitable statistical procedures.
-- Examine numerical relationships using Pearson correlation.
-- Develop Logistic Regression and Random Forest classification models.
-- Use a stratified train/test split and cross-validation.
-- Evaluate models with multiple metrics and communicate limitations.
-- Integrate the four weeks of work into one final report.
+* Examine the structure and quality of the Titanic dataset.
+* Identify and handle missing values.
+* Detect duplicate records and investigate potential outliers.
+* Perform exploratory data analysis using descriptive statistics.
+* Visualize passenger characteristics and survival patterns.
+* Investigate relationships between passenger attributes and survival.
+* Conduct statistical hypothesis tests and correlation analysis.
+* Develop Logistic Regression and Random Forest classification models.
+* Evaluate predictive performance using appropriate metrics.
+* Integrate the four weeks of work into a comprehensive report.
 
-## Repository Structure
+## 3. Dataset Description
+
+The project uses the Titanic passenger training dataset.
+
+**Dataset source:**
+https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv
+
+The dataset contains passenger information, including:
+
+| Variable      | Description                           |
+| ------------- | ------------------------------------- |
+| `Survived`    | Survival outcome: 0 = No, 1 = Yes     |
+| `Pclass`      | Passenger ticket class                |
+| `Sex`         | Passenger sex                         |
+| `Age`         | Passenger age                         |
+| `SibSp`       | Number of siblings and spouses aboard |
+| `Parch`       | Number of parents and children aboard |
+| `Fare`        | Passenger fare                        |
+| `Embarked`    | Port of embarkation                   |
+| `Cabin`       | Cabin information                     |
+| `PassengerId` | Passenger identifier                  |
+| `Name`        | Passenger name                        |
+| `Ticket`      | Ticket identifier                     |
+
+The target variable is `Survived`, which represents a binary classification problem.
+
+## 4. Project Structure
 
 ```text
 Week_4_Comprehensive_Data_Analysis_R/
+│
 ├── README.md
-├── reports/
-│   └── Week_4_Comprehensive_Data_Analysis_Report.docx
+│
+├── data/
+│   └── titanic.csv
+│
 ├── scripts/
 │   ├── data_cleaning_analysis.R
 │   ├── data_visualization_week2.R
 │   └── statistical_analysis_week3.R
-├── data/
+│
 ├── plots/
+│   ├── week2/
+│   └── week3/
+│
 ├── outputs/
+│   ├── week2/
+│   └── week3/
+│
+├── reports/
+│   └── Week_4_Comprehensive_Data_Analysis_Report.docx
+│
 └── screenshots/
 ```
 
-The `data/`, `plots/`, `outputs/`, and `screenshots/` directories are reserved for the dataset and artifacts generated by the complete R workflow. Keep only real data outputs and genuine execution evidence in these folders. Do not commit fabricated RStudio screenshots or claim that results were generated by R unless the script was actually run in R/RStudio.
+## 5. Week-by-Week Workflow
 
-## Four-Week Integration
+### Week 1: Data Cleaning and Preparation
 
-### Week 1 — Data Cleaning and Preliminary Analysis
+The first phase focuses on understanding and preparing the dataset.
 
-The first week establishes the data-quality workflow:
+Activities include:
 
-- Inspect dimensions, variable names, data types, and summaries.
-- Count missing values and calculate missingness percentages.
-- Check exact duplicate rows and unusual values.
-- Impute missing `Age` and `Fare` using medians and `Embarked` using the mode, as documented in the earlier workflow.
-- Screen potential outliers with the interquartile-range (IQR) rule.
-- Encode categorical variables and demonstrate numeric normalization.
-- Produce preliminary summaries and visualizations.
+* Inspecting dataset dimensions and data types.
+* Examining summary statistics.
+* Identifying missing values and calculating missingness percentages.
+* Checking duplicate records.
+* Investigating unusual values and potential outliers.
+* Handling missing numerical values using appropriate imputation techniques.
+* Handling missing categorical values.
+* Encoding categorical variables where required.
+* Preparing the dataset for exploratory analysis.
 
-Imputation values are estimates, not recovered original values. Potential outliers should be reviewed in context rather than automatically removed.
+**Outcome:** A structured dataset suitable for further analysis.
 
-### Week 2 — Data Visualization and Insight Communication
+### Week 2: Exploratory Data Analysis and Visualization
 
-The second week focuses on choosing appropriate charts and explaining the patterns they reveal. The previous report summarized 891 passenger records and reported:
+The second phase explores passenger characteristics and survival patterns through graphical analysis.
 
-- 342 survivors (38.4%) and 549 non-survivors (61.6%).
-- Survival rates of 63.0% in first class, 47.3% in second class, and 24.2% in third class.
-- Survival rates of 74.2% among female passengers and 18.9% among male passengers.
-- A weak positive Age–Fare Pearson correlation of approximately 0.097.
-- A moderate positive SibSp–Parch Pearson correlation of approximately 0.415.
+Visualizations include:
 
-These are descriptive findings from the previous report and should be checked against the exact data version used for final execution. They show associations, not causal effects.
+* Passenger survival distribution.
+* Age distribution.
+* Fare distribution.
+* Survival by passenger class.
+* Survival by sex.
+* Fare distribution across passenger classes.
+* Survival across age groups.
+* Age versus fare relationship.
+* Correlation heatmap.
 
-Visual analysis includes survival counts, age and fare distributions, age versus fare, survival by class, survival by sex, fare by class, survival by age band, and a correlation heatmap.
+Each visualization supports the interpretation of passenger characteristics, differences between groups, and relationships among numerical variables.
 
-### Week 3 — Statistical Analysis and Predictive Modeling
+**Outcome:** Graphical summaries and descriptive insights into the Titanic dataset.
 
-The planned Week 3 analysis includes:
+### Week 3: Statistical Analysis and Predictive Modeling
 
-- Descriptive statistics and missing-value review.
-- Chi-square tests for sex versus survival and passenger class versus survival.
-- A Wilcoxon rank-sum test comparing age distributions by survival group.
-- Shapiro–Wilk normality checks for selected numeric variables.
-- Pearson correlation analysis.
-- Logistic Regression as an interpretable binary-classification baseline.
-- Random Forest to model potential nonlinear patterns and interactions.
-- A stratified 80/20 train/test split.
-- Repeated five-fold cross-validation on the training set.
-- Evaluation with accuracy, precision, recall, specificity, F1-score, ROC-AUC, and confusion matrices.
-- Variable-importance and model diagnostic plots.
+The third phase examines statistical relationships and develops predictive models.
 
-The prior Week 3 report did not establish verified R-generated p-values or final model metrics. This repository therefore does not invent those values. They should be recorded only after the actual R script has run successfully.
+#### Statistical Analysis
 
-### Week 4 — Comprehensive Reporting
+The analysis includes:
 
-Week 4 integrates the earlier methods and findings into a single report, with:
+* Descriptive statistics.
+* Missing-value analysis.
+* Chi-square tests of association.
+* Wilcoxon rank-sum tests.
+* Shapiro–Wilk normality tests.
+* Pearson correlation analysis.
 
-- Introduction and objectives.
-- Dataset and tool descriptions.
-- Data preparation and quality checks.
-- Visualizations and quantified descriptive findings.
-- Statistical hypotheses and methods.
-- Predictive modeling methodology and evaluation metrics.
-- Discussion, limitations, impacts, and recommendations.
-- Lessons learned and future directions.
+These methods help investigate relationships between selected passenger characteristics and survival outcomes.
 
-## Dataset
+#### Predictive Modeling
 
-The public Titanic training CSV used in the earlier workflow is available at:
+Two classification algorithms are considered.
 
-https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv
+**Logistic Regression**
 
-The data includes survival outcome, passenger class, sex, age, family counts, fare, and embarkation information, among other fields. Confirm the dataset version and row/column counts before comparing outputs across weeks.
+Used as an interpretable baseline model for predicting the binary survival outcome.
 
-## Statistical Methods
+**Random Forest**
 
-| Method | Purpose |
-|---|---|
-| Descriptive statistics | Summarize central tendency, spread, and ranges |
-| Missing-value analysis | Quantify data incompleteness before and after preprocessing |
-| IQR screening | Flag potential outliers for review |
-| Chi-square test | Test association between categorical variables |
-| Wilcoxon rank-sum test | Compare age distributions across survival groups |
-| Shapiro–Wilk test | Assess evidence against normality |
-| Pearson correlation | Measure linear association between numeric variables |
-| Logistic Regression | Fit an interpretable binary classification baseline |
-| Random Forest | Model nonlinear patterns and interactions |
-| Repeated cross-validation | Compare model settings on training data |
-| Held-out test evaluation | Estimate performance on unseen observations |
+Used to capture potentially nonlinear relationships and interactions between predictor variables.
 
-## Model Evaluation
+#### Model Evaluation
 
-The model comparison should include:
+The models are evaluated using:
 
-- **Accuracy:** fraction of all predictions that are correct.
-- **Precision:** fraction of predicted survivors who actually survived.
-- **Recall / sensitivity:** fraction of actual survivors correctly identified.
-- **Specificity:** fraction of actual non-survivors correctly identified.
-- **F1-score:** harmonic mean of precision and recall.
-- **ROC-AUC:** discrimination across classification thresholds.
-- **Confusion matrix:** counts of true positives, true negatives, false positives, and false negatives.
+* Accuracy.
+* Precision.
+* Recall (sensitivity).
+* Specificity.
+* F1-score.
+* ROC-AUC.
+* Confusion matrix.
 
-Accuracy should not be used alone. Compare cross-validation results with held-out performance and interpret recall, precision, specificity, and ROC-AUC together.
+A stratified training/test split and cross-validation are used to support model evaluation.
 
-## Tools and R Packages
+**Outcome:** Statistical findings and a comparison of classification-model performance.
 
-- R and RStudio
-- `dplyr` and `tidyr` for data preparation
-- `ggplot2` for visualization
-- `caret` for splitting, cross-validation, and model training
-- `randomForest` for Random Forest
-- `pROC` for ROC analysis
+### Week 4: Comprehensive Reporting
 
-Install any missing packages before execution. Record the R version, package versions, random seed, and data source to improve reproducibility.
+The final phase consolidates the preceding work into a single report.
 
-## How to Run
+The report includes:
 
-1. Clone or download this repository.
-2. Open the folder in RStudio.
-3. Open the relevant R scripts in `scripts/`.
-4. Confirm the dataset path and package dependencies.
-5. Run the scripts from top to bottom.
-6. Inspect generated CSVs, plots, and diagnostic outputs.
-7. Capture genuine screenshots directly from RStudio if execution evidence is required.
-8. Update the report's statistical conclusions and model metrics from the actual generated output.
+* Introduction and objectives.
+* Dataset description.
+* Data preparation methodology.
+* Exploratory analysis and visualizations.
+* Statistical analysis.
+* Predictive modeling methodology.
+* Model evaluation.
+* Results and discussion.
+* Practical implications.
+* Lessons learned.
+* Challenges and limitations.
+* Future improvements.
+* Conclusion.
 
-Example Git commands for adding this folder to a new GitHub repository:
+**Outcome:** A comprehensive Word report documenting the complete analytical workflow.
+
+## 6. Statistical Methods
+
+| Method                 | Purpose                                                  |
+| ---------------------- | -------------------------------------------------------- |
+| Descriptive statistics | Summarize the dataset                                    |
+| Missing-value analysis | Assess data completeness                                 |
+| IQR method             | Identify potential outliers                              |
+| Chi-square test        | Examine associations between categorical variables       |
+| Wilcoxon rank-sum test | Compare distributions between two independent groups     |
+| Shapiro–Wilk test      | Assess evidence against normality                        |
+| Pearson correlation    | Measure linear relationships between numerical variables |
+| Logistic Regression    | Predict binary survival outcomes                         |
+| Random Forest          | Model complex classification patterns                    |
+| Cross-validation       | Evaluate model stability during training                 |
+| Confusion matrix       | Summarize classification outcomes                        |
+| ROC-AUC                | Evaluate class discrimination                            |
+
+## 7. Key Areas of Investigation
+
+The analysis investigates the following questions:
+
+1. What proportion of passengers survived?
+2. How did survival differ across passenger classes?
+3. How did survival differ between female and male passengers?
+4. How did age and fare vary across passengers?
+5. Which passenger characteristics were associated with survival?
+6. What relationships existed between numerical variables?
+7. How effectively could Logistic Regression predict survival?
+8. How did Random Forest compare with Logistic Regression?
+9. Which evaluation metrics best described model performance?
+10. What limitations affected the interpretation of the results?
+
+## 8. Technology Stack
+
+| Technology   | Application                           |
+| ------------ | ------------------------------------- |
+| R            | Statistical computing and analysis    |
+| RStudio      | Development and execution environment |
+| dplyr        | Data manipulation                     |
+| tidyr        | Data organization                     |
+| ggplot2      | Data visualization                    |
+| caret        | Model training and cross-validation   |
+| randomForest | Random Forest classification          |
+| pROC         | ROC curve and AUC analysis            |
+
+## 9. Running the Project
+
+### Step 1: Download the Repository
+
+Clone the repository:
 
 ```bash
-git init
-git add .
-git commit -m "Add Week 4 comprehensive data analysis report"
-git branch -M main
-git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPOSITORY>.git
-git push -u origin main
+git clone https://github.com/saigowtham-24/Week_4_Comprehensive_Data_Analysis_R.git
 ```
 
-If the GitHub repository already exists, clone it first, copy these files into the cloned repository, and then use `git add`, `git commit`, and `git push`. Do not initialize a second repository inside an existing Git repository.
+Open the project directory in RStudio.
 
-## Limitations and Responsible Interpretation
+### Step 2: Prepare the Dataset
 
-- The Titanic dataset is historical and educational; findings should not be generalized to modern populations.
-- Imputation can affect distributions, correlations, statistical tests, and model performance.
-- Observational associations do not prove causation.
-- Small subgroups may have unstable percentages.
-- Performance estimates depend on preprocessing, split, seed, predictors, and tuning.
-- Preprocessing should be fitted within the training workflow to avoid data leakage.
-- Numerical test results and model metrics must be derived from actual execution.
+Download the Titanic CSV dataset from the source provided above and save it as:
 
-## Conclusion
+```text
+data/titanic.csv
+```
 
-This project demonstrates how data cleaning, visualization, statistical reasoning, and predictive modeling fit together in an end-to-end workflow. Its main lesson is that credible reporting requires transparent preprocessing decisions, appropriate methods, careful evaluation, and conclusions supported by actual outputs. The final model and inferential findings should be completed and verified from the R execution artifacts before submission.
+### Step 3: Install Required Packages
 
-## Author
+Run the following commands in R:
 
-**Project:** Week 4 — Comprehensive Data Analysis Reporting and Presentation  
-**Dataset:** Titanic Passenger Training Dataset  
-**Language:** R  
-**Topic:** Data cleaning, visualization, statistical analysis, and predictive modeling
+```r
+install.packages(c(
+  "dplyr",
+  "tidyr",
+  "ggplot2",
+  "caret",
+  "randomForest",
+  "pROC"
+))
+```
 
+### Step 4: Run the Analysis Scripts
 
-## Artifact provenance
+Execute the scripts in the following order:
 
-The `plots/` and `outputs/` folders contain assets carried forward from the supplied Week 2 and Week 3 project packages. The `screenshots/week3/` folder contains supplied visual evidence assets, including plots, code excerpts, and result tables; these should not automatically be represented as live RStudio screenshots. The packaging process did not execute R, so rerun the scripts in R/RStudio to reproduce and verify all outputs. In particular, confirm statistical-test p-values and predictive-model metrics before using them as final evaluated results.
+1. `data_cleaning_analysis.R`
+2. `data_visualization_week2.R`
+3. `statistical_analysis_week3.R`
+
+Confirm that file paths match the repository structure.
+
+### Step 5: Review the Outputs
+
+Review the generated charts, statistical summaries, hypothesis-test results, and predictive-model evaluation metrics.
+
+Save the final report in the `reports/` directory.
+
+## 10. Expected Outputs
+
+The completed workflow should produce:
+
+* Cleaned dataset and data-quality summaries.
+* Missing-value and outlier reports.
+* Descriptive statistics.
+* Exploratory data visualizations.
+* Correlation analysis.
+* Statistical hypothesis-test results.
+* Logistic Regression predictions and evaluation metrics.
+* Random Forest predictions and evaluation metrics.
+* Confusion matrices and ROC curves.
+* Model comparison summaries.
+* Comprehensive Word report.
+
+## 11. Results and Interpretation
+
+The final results should explain the observed survival patterns, statistical relationships, and predictive-model performance.
+
+Model comparisons should consider more than accuracy alone. Precision, recall, specificity, F1-score, and ROC-AUC provide additional information about classification performance.
+
+The interpretation should distinguish statistical association from causation and explain the limitations of the dataset and analytical methods.
+
+## 12. Limitations
+
+* The Titanic dataset is historical and should not be generalized to modern populations.
+* Missing-value imputation can influence statistical results.
+* Observational relationships do not establish causation.
+* Small subgroups may produce unstable estimates.
+* Predictive performance depends on feature selection, preprocessing, model configuration, and data splitting.
+* Model performance on the training data may differ from performance on unseen observations.
+
+## 13. Future Enhancements
+
+Potential improvements include:
+
+* More systematic feature engineering.
+* Comparison with additional classification algorithms.
+* Hyperparameter optimization.
+* Improved handling of missing data.
+* More extensive model diagnostics.
+* Additional subgroup analysis.
+* Reproducible execution through a documented R project environment.
+* Improved visual presentation of analytical findings.
+
+## 14. Conclusion
+
+This project demonstrates an end-to-end data analysis workflow using the Titanic passenger dataset and R.
+
+By combining data preparation, visualization, statistical analysis, and predictive modeling, the project illustrates how raw data can be transformed into interpretable findings and predictive insights.
+
+The integrated workflow emphasizes data quality, appropriate statistical methods, model evaluation, and clear communication of analytical results.
+
+---
+
+**Project:** Week 4 — Comprehensive Data Analysis Reporting and Presentation
+**Dataset:** Titanic Passenger Training Dataset
+**Programming Language:** R
+**Repository:** `Week_4_Comprehensive_Data_Analysis_R`
