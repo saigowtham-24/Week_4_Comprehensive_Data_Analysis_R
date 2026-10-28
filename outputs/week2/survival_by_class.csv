@@ -1,0 +1,4 @@
+Pclass,passengers,survivors,survival_rate
+First class,216,136,0.6296296296296297
+Second class,184,87,0.47282608695652173
+Third class,491,119,0.24236252545824846

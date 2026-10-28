@@ -1,0 +1,5 @@
+Dataset: Titanic passenger training dataset (891 records).
+Missing Age and Fare values are filled using the median for visualization.
+Missing Embarked values are filled using the most frequent category.
+Cabin availability is represented separately as CabinKnown.
+Survival rates are proportions within each group.
