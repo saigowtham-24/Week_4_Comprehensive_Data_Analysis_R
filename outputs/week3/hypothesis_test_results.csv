@@ -1,0 +1,6 @@
+test,statistic,df,p_value,null_hypothesis,decision_alpha_0_05
+Chi-square: Sex vs Survival,260.71702,1,1.1973571e-58,Sex and survival are independent,Reject H0
+Chi-square: Passenger class vs Survival,102.88899,2,4.5492517e-23,Pclass and survival are independent,Reject H0
+Wilcoxon rank-sum: Age by Survival,89779.5,,0.26967312,Age distributions are equal between survival groups,Fail to reject H0
+Shapiro-Wilk: Age sample,0.952666,,1.4335837e-11,Sampled Age values follow a normal distribution,Reject H0
+Shapiro-Wilk: Fare sample,0.60669766,,3.8352573e-32,Sampled Fare values follow a normal distribution,Reject H0

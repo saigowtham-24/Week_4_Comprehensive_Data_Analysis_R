@@ -1,0 +1,9 @@
+variable,missing_before,missing_after,missing_before_percent,missing_after_percent
+Survived,0,0,0.0,0.0
+Pclass,0,0,0.0,0.0
+Sex,0,0,0.0,0.0
+Age,0,0,0.0,0.0
+SibSp,0,0,0.0,0.0
+Parch,0,0,0.0,0.0
+Fare,0,0,0.0,0.0
+Embarked,0,0,0.0,0.0

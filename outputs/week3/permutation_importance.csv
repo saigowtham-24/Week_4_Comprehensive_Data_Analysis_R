@@ -1,0 +1,8 @@
+feature,importance_mean,importance_sd
+Sex,0.21271,0.04785
+Pclass,0.04789,0.01375
+Fare,0.04437,0.00963
+Age,0.03783,0.00864
+Embarked,0.01559,0.00797
+SibSp,0.00599,0.00549
+Parch,0.00248,0.00507

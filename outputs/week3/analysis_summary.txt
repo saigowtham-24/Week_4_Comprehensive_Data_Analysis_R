@@ -1,0 +1,22 @@
+WEEK 3 ANALYSIS SUMMARY
+Topic: Statistical Analysis and Predictive Modeling using the Titanic passenger dataset
+
+Dataset: 891 passengers and 8 analyzed variables.
+Survived: 342 (38.38%).
+Did not survive: 549 (61.62%).
+Missing values after imputation: 0.
+
+HYPOTHESIS TESTS (alpha = 0.05)
+Sex vs survival: chi-square = 260.717, df = 1, p = 1.197e-58; evidence of association.
+Passenger class vs survival: chi-square = 102.889, df = 2, p = 4.549e-23; evidence of association.
+Age distributions by survival: Mann-Whitney U = 89779.5, p = 0.2697.
+
+MODEL EVALUATION
+Train/test split: 712 training rows and 179 held-out test rows (stratified 80/20).
+Cross-validation: stratified 5-fold CV on training data.
+Best model by held-out ROC-AUC: Random Forest.
+              model  test_accuracy  test_precision  test_recall  test_specificity  test_f1  test_roc_auc
+Logistic Regression          0.804           0.793        0.667             0.891    0.724         0.843
+      Random Forest          0.810           0.830        0.638             0.918    0.721         0.844
+
+Interpret results alongside class balance, false-positive/false-negative counts, and the limitations of this historical dataset. Association and feature importance do not establish causation.
