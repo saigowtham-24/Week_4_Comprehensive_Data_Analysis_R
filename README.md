@@ -30,7 +30,8 @@ Week_4_Comprehensive_Data_Analysis_R/
 │   └── Week_4_Comprehensive_Data_Analysis_Report.docx
 ├── scripts/
 │   ├── data_cleaning_analysis.R
-│   └── data_visualization_week2.R
+│   ├── data_visualization_week2.R
+│   └── statistical_analysis_week3.R
 ├── data/
 ├── plots/
 ├── outputs/
@@ -193,3 +194,8 @@ This project demonstrates how data cleaning, visualization, statistical reasonin
 **Dataset:** Titanic Passenger Training Dataset  
 **Language:** R  
 **Topic:** Data cleaning, visualization, statistical analysis, and predictive modeling
+
+
+## Artifact provenance
+
+The `plots/` and `outputs/` folders contain assets carried forward from the supplied Week 2 and Week 3 project packages. The `screenshots/week3/` folder contains supplied visual evidence assets, including plots, code excerpts, and result tables; these should not automatically be represented as live RStudio screenshots. The packaging process did not execute R, so rerun the scripts in R/RStudio to reproduce and verify all outputs. In particular, confirm statistical-test p-values and predictive-model metrics before using them as final evaluated results.
